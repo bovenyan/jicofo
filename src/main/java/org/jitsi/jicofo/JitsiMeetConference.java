@@ -838,10 +838,10 @@ public class JitsiMeetConference
         
         logger.info("Boven-JitsiMeetConference : offer created for Participan (" + peer.getEndpointId() + ")");
         // Boven added disable dtls for Hammer
-        if (peer.getEndpointId().contains("Hammer")){
-        	logger.info("Boven-JitsiMeetConference : DTLS disabled for (" + peer.getEndpointId() + ")");
-        	useDtls = false;
-        }
+        //if (peer.getEndpointId().contains("Hammer")){
+        //	logger.info("Boven-JitsiMeetConference : DTLS disabled for (" + peer.getEndpointId() + ")");
+        //	useDtls = false;
+        //}
         
         if (peer.hasAudioSupport())
         {
