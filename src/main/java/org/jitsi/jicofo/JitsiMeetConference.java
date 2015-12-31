@@ -505,17 +505,18 @@ public class JitsiMeetConference
             return;
 
         final String address = chatRoomMember.getContactAddress();
-        
+        // logger.info("Boven-JitsiMeetConference : Memeber \""+chatRoomMember.getName()+"\" joins");
         final Participant newParticipant;
 
-        // Peer already connected ?
+        // Peer already connected ? C
         if (findParticipantForChatMember(chatRoomMember) != null)
             return;
 
         newParticipant = new Participant((XmppChatMember) chatRoomMember);
 
         participants.add(newParticipant);
-        logger.info("Boven-JitsiMeetConference : inviteChatMember called - address (" + address + ")");
+        // logger.info("Boven-JitsiMeetConference : inviteChatMember called - address (" + address + ")");
+        
         logger.info("Added participant for: " + address);
 
         // Invite peer takes time because of channel allocation, so schedule
@@ -828,13 +829,20 @@ public class JitsiMeetConference
     private List<ContentPacketExtension> createOffer(Participant peer)
         throws OperationFailedException
     {
-    	logger.info("Boven-JitsiMeetConference : offer created");
+    	
         List<ContentPacketExtension> contents
             = new ArrayList<ContentPacketExtension>();
 
         boolean disableIce = !peer.hasIceSupport();
         boolean useDtls = peer.hasDtlsSupport();
-
+        
+        logger.info("Boven-JitsiMeetConference : offer created for Participan (" + peer.getEndpointId() + ")");
+        // Boven added disable dtls for Hammer
+        if (peer.getEndpointId().contains("Hammer")){
+        	logger.info("Boven-JitsiMeetConference : DTLS disabled for (" + peer.getEndpointId() + ")");
+        	useDtls = false;
+        }
+        
         if (peer.hasAudioSupport())
         {
             contents.add(
