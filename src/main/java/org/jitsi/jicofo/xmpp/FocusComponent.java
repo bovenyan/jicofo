@@ -123,7 +123,7 @@ public class FocusComponent
                           boolean anonymousFocus, String focusAuthJid)
     {
         super(host, port, domain, subDomain, secret);
-
+        System.out.println("Boven: FocusComponent: Init");
         this.isFocusAnonymous = anonymousFocus;
         this.focusAuthJid = focusAuthJid;
 
