@@ -166,8 +166,9 @@ public class FocusManager
      */
     public void start()
     {
+    	logger.info("Boven-FocusManager: Started");
         expireThread.start();
-
+        
         ConfigurationService config = FocusBundleActivator.getConfigService();
         String hostName = config.getString(HOSTNAME_PNAME);
         String xmppDomain = config.getString(XMPP_DOMAIN_PNAME);
@@ -242,6 +243,7 @@ public class FocusManager
             Map<String, String> properties)
         throws Exception
     {
+    	logger.info("Boven-FocusManager: ConferenceReq allocate MUC for room");
         if (StringUtils.isNullOrEmpty(room))
             return false;
 
@@ -271,6 +273,7 @@ public class FocusManager
     private void createConference(String room, Map<String, String> properties)
         throws Exception
     {
+    	logger.info("Boven-FocusManager: Create conference");
         JitsiMeetConfig config = new JitsiMeetConfig(properties);
 
         JitsiMeetConference conference
