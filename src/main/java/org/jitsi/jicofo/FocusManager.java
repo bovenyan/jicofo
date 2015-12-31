@@ -243,7 +243,7 @@ public class FocusManager
             Map<String, String> properties)
         throws Exception
     {
-    	logger.info("Boven-FocusManager: ConferenceReq allocate MUC for room");
+    	logger.info("Boven-FocusManager: ConferenceReq allocate MUC for room (" + room +")");
         if (StringUtils.isNullOrEmpty(room))
             return false;
 
@@ -273,7 +273,7 @@ public class FocusManager
     private void createConference(String room, Map<String, String> properties)
         throws Exception
     {
-    	logger.info("Boven-FocusManager: Create conference");
+    	logger.info("Boven-FocusManager: Create conference room (" + room + ")");
         JitsiMeetConfig config = new JitsiMeetConfig(properties);
     	// Map<String, String> junkProperties = new HashMap<String, String>(); // Boven
         //JitsiMeetConfig config = new JitsiMeetConfig(junkProperties);  // Boven

@@ -224,10 +224,9 @@ public class JitsiMeetConference
     {
         if (protocolProviderHandler == null)
             throw new NullPointerException("protocolProviderHandler");
-        System.out.println("Boven-JitsiMeetConference: begin conference "+ roomName);
+        System.out.println("Boven-JitsiMeetConference: begin conference room + (" + roomName +")");
         this.id = ID_DATE_FORMAT.format(new Date()) + "_" + hashCode();
         this.roomName = roomName;
-        //this.roomName="FUCK"; // boven
         this.focusUserName = focusUserName;
         this.etherpadName = UUID.randomUUID().toString().replaceAll("-", "");
         this.protocolProviderHandler = protocolProviderHandler;
@@ -444,6 +443,7 @@ public class JitsiMeetConference
      */
     protected void onMemberJoined(final ChatRoomMember chatRoomMember)
     {
+    	logger.info("Boven-JitsiMeetConference : onMemberJoined called");
         logger.info(
             "Member " + chatRoomMember.getContactAddress() + " joined.");
 
@@ -455,17 +455,19 @@ public class JitsiMeetConference
         // Are we ready to start ?
         if (!checkAtLeastTwoParticipants())
         {
+        	logger.info("Boven-JitsiMeetConference : only one member, skip");
             return;
         }
 
         // FIXME: verify
         if (colibriConference == null)
         {
+        	
             colibriConference = colibri.createNewConference();
-
             colibriConference.setConfig(config);
 
             String roomName = MucUtil.extractName(chatRoom.getName());
+            logger.info("Boven-JitsiMeetConference : Colibri Created - name + ("+ roomName +")");
             colibriConference.setName(roomName);
         }
 
@@ -498,11 +500,12 @@ public class JitsiMeetConference
     private void inviteChatMember(final ChatRoomMember chatRoomMember,
         final boolean[] startMuted)
     {
+    	
         if (isFocusMember(chatRoomMember))
             return;
 
         final String address = chatRoomMember.getContactAddress();
-
+        
         final Participant newParticipant;
 
         // Peer already connected ?
@@ -512,7 +515,7 @@ public class JitsiMeetConference
         newParticipant = new Participant((XmppChatMember) chatRoomMember);
 
         participants.add(newParticipant);
-
+        logger.info("Boven-JitsiMeetConference : inviteChatMember called - address (" + address + ")");
         logger.info("Added participant for: " + address);
 
         // Invite peer takes time because of channel allocation, so schedule
@@ -693,7 +696,7 @@ public class JitsiMeetConference
         throws OperationFailedException
     {
         // This method is executed on thread pool.
-
+    	logger.info("Boven-JitsiMeetConference : channel allocated");
         // Store colibri instance here to be able to free the channels even
         // after the conference has been disposed.
         ColibriConference colibriConference = this.colibriConference;
@@ -825,6 +828,7 @@ public class JitsiMeetConference
     private List<ContentPacketExtension> createOffer(Participant peer)
         throws OperationFailedException
     {
+    	logger.info("Boven-JitsiMeetConference : offer created");
         List<ContentPacketExtension> contents
             = new ArrayList<ContentPacketExtension>();
 
@@ -1276,7 +1280,7 @@ public class JitsiMeetConference
     public void registrationStateChanged(RegistrationStateChangeEvent evt)
     {
         logger.info("Reg state changed: " + evt);
-
+        logger.info("Boven-JitsiMeetConference : reg state changed");
         if (RegistrationState.REGISTERED.equals(evt.getNewState()))
         {
 
