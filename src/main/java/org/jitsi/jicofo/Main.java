@@ -170,7 +170,7 @@ public class Main
             System.setProperty(
                     FocusManager.FOCUS_USER_PASSWORD_PNAME, focusPassword);
         }
-
+        System.out.println("Boven: I'm Fucking! here");
         ComponentMain componentMain = new ComponentMain();
 
         boolean focusAnonymous = StringUtils.isNullOrEmpty(focusPassword);
