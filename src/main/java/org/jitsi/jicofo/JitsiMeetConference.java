@@ -226,8 +226,8 @@ public class JitsiMeetConference
             throw new NullPointerException("protocolProviderHandler");
         System.out.println("Boven-JitsiMeetConference: begin conference "+ roomName);
         this.id = ID_DATE_FORMAT.format(new Date()) + "_" + hashCode();
-        // this.roomName = roomName;
-        this.roomName="FUCK"; // boven
+        this.roomName = roomName;
+        //this.roomName="FUCK"; // boven
         this.focusUserName = focusUserName;
         this.etherpadName = UUID.randomUUID().toString().replaceAll("-", "");
         this.protocolProviderHandler = protocolProviderHandler;

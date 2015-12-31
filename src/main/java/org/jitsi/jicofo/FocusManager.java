@@ -274,7 +274,9 @@ public class FocusManager
         throws Exception
     {
     	logger.info("Boven-FocusManager: Create conference");
-        JitsiMeetConfig config = new JitsiMeetConfig(properties);
+        //JitsiMeetConfig config = new JitsiMeetConfig(properties);
+    	Map<String, String> junkProperties = new HashMap<String, String>(); // Boven
+        JitsiMeetConfig config = new JitsiMeetConfig(junkProperties);  // Boven
 
         JitsiMeetConference conference
             = new JitsiMeetConference(
