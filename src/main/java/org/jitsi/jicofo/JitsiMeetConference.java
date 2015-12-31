@@ -836,12 +836,20 @@ public class JitsiMeetConference
         boolean disableIce = !peer.hasIceSupport();
         boolean useDtls = peer.hasDtlsSupport();
         
-        logger.info("Boven-JitsiMeetConference : offer created for Participan (" + peer.getEndpointId() + ")");
         // Boven added disable dtls for Hammer
-        //if (peer.getEndpointId().contains("Hammer")){
-        //	logger.info("Boven-JitsiMeetConference : DTLS disabled for (" + peer.getEndpointId() + ")");
-        //	useDtls = false;
-        //}
+        logger.info("Boven-JitsiMeetConference : offer created for Participant (" + peer.getEndpointId() + ")");
+        if (useDtls){
+        	logger.info("Boven-JitsiMeetConference : Participant (" + peer.getEndpointId() + ") has DTLS");
+        }
+        else{
+        	logger.info("Boven-JitsiMeetConference : Participant (" + peer.getEndpointId() + ") has no DTLS");
+        }
+        
+        if (peer.getEndpointId().contains("Hammer")){
+        	logger.info("Boven-JitsiMeetConference : DTLS disabled for (" + peer.getEndpointId() + ")");
+        	useDtls = false;
+        }
+        // Boven added disable dtls for Hammer
         
         if (peer.hasAudioSupport())
         {
