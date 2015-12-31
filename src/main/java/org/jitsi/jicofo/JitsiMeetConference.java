@@ -224,7 +224,7 @@ public class JitsiMeetConference
     {
         if (protocolProviderHandler == null)
             throw new NullPointerException("protocolProviderHandler");
-
+        logger.info("Boven-JitsiMeetConference: begin conference "+ roomName);
         this.id = ID_DATE_FORMAT.format(new Date()) + "_" + hashCode();
         this.roomName = roomName;
         this.focusUserName = focusUserName;
