@@ -162,7 +162,7 @@ public class FocusComponent
         focusManager = ServiceUtils.getService(bc, FocusManager.class);
         reservationSystem
             = ServiceUtils.getService(bc, ReservationSystem.class);
-
+        System.out.println("Boven: FocusComponent: Init");        
         focusManager.start();
     }
 
