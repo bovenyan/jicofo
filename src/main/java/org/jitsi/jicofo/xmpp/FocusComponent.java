@@ -222,6 +222,7 @@ public class FocusComponent
             org.jivesoftware.smack.packet.IQ smackIq = IQUtils.convert(iq);
             if (smackIq instanceof ColibriStatsIQ)
             {
+            	logger.debug("Boven: FocusComponent: an IQ get coming in for ColibriStats");
                 // Reply with stats
                 ColibriStatsIQ statsReply = new ColibriStatsIQ();
 
@@ -247,6 +248,7 @@ public class FocusComponent
             }
             else if (smackIq instanceof LoginUrlIQ)
             {
+            	logger.debug("Boven: FocusComponent: an IQ get coming in for Login");
                 org.jivesoftware.smack.packet.IQ result
                     = handleAuthUrlIq((LoginUrlIQ) smackIq);
                 return IQUtils.convert(result);
@@ -293,6 +295,7 @@ public class FocusComponent
             }
             else if (smackIq instanceof GracefulShutdownIQ)
             {
+            	logger.debug("Boven: FocusComponent: an IQ set coming in with Shutdown IQ");
                 GracefulShutdownIQ gracefulShutdownIQ
                     = (GracefulShutdownIQ) smackIq;
 
@@ -418,6 +421,7 @@ public class FocusComponent
             ConferenceIq query)
         throws Exception
     {
+    	logger.debug("Boven: FocusComponent: an IQ set coming in with ConferenceIQ type");
         ConferenceIq response = new ConferenceIq();
         String room = query.getRoom();
 
@@ -469,6 +473,7 @@ public class FocusComponent
 
         if (authAuthority != null)
         {
+        	logger.debug("Boven: FocusComponent: Is Authorized");
             response.addProperty(
                 new ConferenceIq.Property(
                         "externalAuth",
@@ -526,7 +531,9 @@ public class FocusComponent
         String authUrl
             = authAuthority.createLoginUrl(
                 machineUID, peerFullJid, roomName, popup);
-
+        
+        logger.debug("Boven: FocusComponent: Url Authorized: " + authUrl);
+        
         result.setUrl(authUrl);
 
         logger.info("Sending url: " + result.toXML());
