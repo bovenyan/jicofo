@@ -64,7 +64,7 @@ public class ProtocolProviderHandler
         = new CopyOnWriteArrayList<RegistrationStateChangeListener>();
 
     /**
-     * Start this instance by created XMPP account using igven parameters.
+     * Start this instance by created XMPP account using given parameters.
      * @param serverAddress XMPP server address.
      * @param xmppDomain XMPP authentication domain.
      * @param xmppLoginPassword XMPP login(optional).
@@ -76,6 +76,7 @@ public class ProtocolProviderHandler
                       String xmppLoginPassword,
                       String nickName)
     {
+    	logger.info("Boven-ProtocolProviderHandler: Started");
         xmppProviderFactory
             = ProtocolProviderFactory.getProtocolProviderFactory(
                     FocusBundleActivator.bundleContext,
@@ -131,6 +132,7 @@ public class ProtocolProviderHandler
     @Override
     public void registrationStateChanged(RegistrationStateChangeEvent evt)
     {
+    	logger.info("Boven-ProtocolProviderHandler: State Changed");
         for(RegistrationStateChangeListener l : regListeners)
         {
             try
