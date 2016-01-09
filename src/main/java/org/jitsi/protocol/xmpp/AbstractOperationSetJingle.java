@@ -95,7 +95,7 @@ public abstract class AbstractOperationSetJingle
                                 boolean[] startMuted)
     {
         logger.info("INVITE PEER: " + address);
-
+        logger.info("Boven-OperationSetJingle: AbstractOperationSetJingle Called, InitiateSession");
         String sid = JingleIQ.generateSID();
 
         JingleSession session = new JingleSession(sid, address, requestHandler);
