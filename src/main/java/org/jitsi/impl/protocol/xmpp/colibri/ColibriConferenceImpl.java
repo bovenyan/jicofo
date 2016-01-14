@@ -175,6 +175,13 @@ public class ColibriConferenceImpl
                 acquireCreateConferenceSemaphore(endpointName);
 
                 colibriBuilder.reset();
+                // Boven: test whether bundle used
+                if (useBundle){
+                	logger.info("Boven: Bundle used");
+                }
+                else{
+                	logger.info("Boven: Bundle not used");
+                }
 
                 colibriBuilder.addAllocateChannelsReq(
                     useBundle, endpointName, peerIsInitiator, contents);
