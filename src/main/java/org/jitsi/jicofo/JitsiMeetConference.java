@@ -941,6 +941,7 @@ public class JitsiMeetConference
             for (ColibriConferenceIQ.Channel channel
                 : colibriContent.getChannels())
             {
+            	// Boven: Here is the key to disable transport SRTP 
                 IceUdpTransportPacketExtension transport;
 
                 if (useBundle)

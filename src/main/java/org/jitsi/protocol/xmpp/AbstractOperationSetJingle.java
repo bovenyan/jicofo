@@ -95,7 +95,7 @@ public abstract class AbstractOperationSetJingle
                                 boolean[] startMuted)
     {
         logger.info("INVITE PEER: " + address);
-
+        logger.info("Boven-AbstractOperationSetJingle: Init Session");
         String sid = JingleIQ.generateSID();
 
         JingleSession session = new JingleSession(sid, address, requestHandler);
@@ -108,7 +108,8 @@ public abstract class AbstractOperationSetJingle
                     address,
                     sid,
                     contents);
-
+        
+        System.out.println("Boven-AbstractOperationSetJingle: " + inviteIQ.toXML());
         if (useBundle)
         {
             GroupPacketExtension group
