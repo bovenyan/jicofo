@@ -108,7 +108,8 @@ public abstract class AbstractOperationSetJingle
                     address,
                     sid,
                     contents);
-
+        
+        System.out.println("Boven-AbstractOperationSetJingle: " + inviteIQ.toXML());
         if (useBundle)
         {
             GroupPacketExtension group

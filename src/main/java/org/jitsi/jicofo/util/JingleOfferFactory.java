@@ -235,14 +235,19 @@ public class JingleOfferFactory
 
         // DTLS-SRTP
         //setDtlsEncryptionOnContent(mediaType, content, null);
-
+        System.out.println("Boven: Before adding DTLS" + content.toXML());
         if (!disableIce)
         {
             IceUdpTransportPacketExtension iceUdpTransportPacketExtension
                     = new IceUdpTransportPacketExtension();
-            if (useDtls)
+            if (useDtls){
+            	System.out.println("Boven-JingleOfferFactory: useDtls");
                 iceUdpTransportPacketExtension
                         .addChildExtension(new DtlsFingerprintPacketExtension());
+            }
+            else{
+            	System.out.println("Boven-JingleOfferFactory: DtlsDiabled");
+            }
 
             content.addChildExtension(iceUdpTransportPacketExtension);
         }
@@ -250,7 +255,7 @@ public class JingleOfferFactory
         {
             content.addChildExtension(new RawUdpTransportPacketExtension());
         }
-
+        System.out.println("Boven: After adding DTLS" + content.toXML());
         return content;
     }
 }
