@@ -732,7 +732,7 @@ public class JitsiMeetConference
 
         String jvb = null;
 
-        while (this.colibriConference != null)
+        while (this.colibriConference != null)		// Boven: Try to reach an JVB
         {
             try
             {
@@ -745,7 +745,7 @@ public class JitsiMeetConference
                     "Using " + jvb + " to allocate channels for: "
                         + peer.getChatMember().getContactAddress());
 
-                ColibriConferenceIQ peerChannels
+                ColibriConferenceIQ peerChannels		// This is Actually the channel allocated
                     = colibriConference.createColibriChannels(
                             peer.hasBundleSupport(),
                             peer.getEndpointId(),
@@ -753,8 +753,9 @@ public class JitsiMeetConference
 
                 bridgeSelector.updateBridgeOperationalStatus(jvb, true);
 
-                if (colibriConference.hasJustAllocated())
+                if (colibriConference.hasJustAllocated())  // Boven: is there a IQ sent out here?
                 {
+                	logger.info("Boven-JitsiMeetConference : Has Just Allocated ");
                     EventAdmin eventAdmin
                             = FocusBundleActivator.getEventAdmin();
                     if (eventAdmin != null)
@@ -767,6 +768,7 @@ public class JitsiMeetConference
                                     jvb));
                     }
                 }
+                logger.info("Boven-JitsiMeetConference : peerChannel content:::: " + peerChannels.toXML());
                 return peerChannels;
             }
             catch(OperationFailedException exc)
@@ -837,7 +839,7 @@ public class JitsiMeetConference
         boolean useDtls = peer.hasDtlsSupport();
         
         // Boven added disable dtls for Hammer
-        logger.info("Boven-JitsiMeetConference : offer created for Participant (" + peer.getEndpointId() + ")");
+        /* logger.info("Boven-JitsiMeetConference : offer created for Participant (" + peer.getEndpointId() + ")");
         if (useDtls){
         	logger.info("Boven-JitsiMeetConference : Participant (" + peer.getEndpointId() + ") has DTLS");
         }
@@ -848,7 +850,7 @@ public class JitsiMeetConference
         if (peer.getEndpointId().contains("Hammer")){
         	logger.info("Boven-JitsiMeetConference : DTLS disabled for (" + peer.getEndpointId() + ")");
         	useDtls = false;
-        }
+        } */
         // Boven added disable dtls for Hammer
         
         if (peer.hasAudioSupport())
@@ -874,11 +876,12 @@ public class JitsiMeetConference
             contents.add(
                 JingleOfferFactory.createContentForMedia(
                     MediaType.DATA, disableIce, useDtls));
+            logger.info("Boven-JitsiMeetConference : SCP is enabled");
         }
 
         boolean useBundle = peer.hasBundleSupport();
 
-        ColibriConferenceIQ peerChannels = allocateChannels(peer, contents);
+        ColibriConferenceIQ peerChannels = allocateChannels(peer, contents);  //  Boven: Allocate Channels
 
         if (peerChannels == null)
             return null;
