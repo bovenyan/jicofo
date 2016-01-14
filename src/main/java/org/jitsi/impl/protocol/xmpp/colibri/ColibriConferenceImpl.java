@@ -180,11 +180,13 @@ public class ColibriConferenceImpl
                     useBundle, endpointName, peerIsInitiator, contents);
 
                 allocateRequest = colibriBuilder.getRequest(jitsiVideobridge);
+                
             }
 
             if (logger.isDebugEnabled())
                 logger.debug(Thread.currentThread() + " sending alloc request");
 
+            logger.info("Boven-ColibriConferenceIQ: AllocChannel Request:: " + allocateRequest.toXML());
             // FIXME retry allocation on timeout ?
             Packet response = sendAllocRequest(endpointName, allocateRequest);
 
