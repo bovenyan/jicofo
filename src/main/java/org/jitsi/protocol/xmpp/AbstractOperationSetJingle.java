@@ -136,6 +136,7 @@ public abstract class AbstractOperationSetJingle
         }
 
         IQ reply = (IQ) getConnection().sendPacketAndGetReply(inviteIQ);
+        System.out.println("Boven-AbstractOperationSetJingleReply: " + reply.toXML());
         if (reply != null && IQ.Type.RESULT.equals(reply.getType()))
         {
             return true;

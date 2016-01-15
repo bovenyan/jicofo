@@ -197,7 +197,7 @@ public class ColibriConferenceImpl
             logger.info("Boven-ColibriConferenceIQ: AllocChannel Request:: " + allocateRequest.toXML());
             // FIXME retry allocation on timeout ?
             Packet response = sendAllocRequest(endpointName, allocateRequest);
-            logger.info("Boven-ColibriConferenceIQ: AllocChannel Response:: " + response.toXML());
+            // logger.info("Boven-ColibriConferenceIQ: AllocChannel Response:: " + response.toXML());
             if (logger.isDebugEnabled())
                 logger.debug(
                     Thread.currentThread() +
