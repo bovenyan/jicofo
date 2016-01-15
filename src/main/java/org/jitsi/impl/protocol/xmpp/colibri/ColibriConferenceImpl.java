@@ -183,8 +183,9 @@ public class ColibriConferenceImpl
                 	logger.info("Boven: Bundle not used");
                 }
 
-                colibriBuilder.addAllocateChannelsReq(
+                colibriBuilder.addAllocateChannelsReq(   // Boven: Here create the empty request.. creates the initial
                     useBundle, endpointName, peerIsInitiator, contents);
+                
 
                 allocateRequest = colibriBuilder.getRequest(jitsiVideobridge);
                 
@@ -196,7 +197,7 @@ public class ColibriConferenceImpl
             logger.info("Boven-ColibriConferenceIQ: AllocChannel Request:: " + allocateRequest.toXML());
             // FIXME retry allocation on timeout ?
             Packet response = sendAllocRequest(endpointName, allocateRequest);
-
+            logger.info("Boven-ColibriConferenceIQ: AllocChannel Response:: " + allocateRequest.toXML());
             if (logger.isDebugEnabled())
                 logger.debug(
                     Thread.currentThread() +
