@@ -1518,7 +1518,7 @@ public class JitsiMeetConference
                 transport,
                 participant.getColibriChannelsInfo());
         }
-        else
+        else	// Boven: This is executed
         {
             Map<String, IceUdpTransportPacketExtension> transportMap
                 = new HashMap<String, IceUdpTransportPacketExtension>();
@@ -1533,7 +1533,6 @@ public class JitsiMeetConference
                     transportMap.put(cpe.getName(), transport);
                 }
             }
-
             // FIXME: initiator
             boolean initiator = true;
             colibriConference.updateTransportInfo(

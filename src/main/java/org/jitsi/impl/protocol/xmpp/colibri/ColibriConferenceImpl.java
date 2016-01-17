@@ -397,7 +397,7 @@ public class ColibriConferenceImpl
 
         if (iq != null)
         {
-        	logger.info("Boven-ColibriConferenceImpl updateTransInfo: " + iq.toXML());
+        	System.out.println("Boven-ColibriConferenceImpl updateTransInfo: " + iq.toXML());
             connection.sendPacket(iq);
         }
     }
